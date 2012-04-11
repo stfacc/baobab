@@ -38,6 +38,12 @@ baobab_SOURCES = \
 	main.vala			\
 	$(BUILT_SOURCES)
 
+baobab_c_headers = \
+	baobab-chart.h			\
+	baobab-ringschart.h		\
+	baobab-treemap.h		\
+	$(NULL)
+
 baobab-resources.c: baobab.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies baobab.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source baobab.gresource.xml
 
@@ -70,6 +76,7 @@ MAINTAINERCLEANFILES = \
 EXTRA_DIST = \
 	baobab.gresource.xml \
 	baobab-main-window.ui \
-	baobab-menu.ui
+	baobab-menu.ui	\
+	$(baobab_c_headers)
 
 -include $(top_srcdir)/git.mk

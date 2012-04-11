@@ -35,6 +35,7 @@ namespace Baobab {
         Gtk.TreeView treeview;
         Gtk.Notebook chart_notebook;
         Gtk.Grid location_view;
+        Gtk.Paned horizontal_paned;
         Chart rings_chart;
         Chart treemap_chart;
         Gtk.Spinner spinner;
@@ -128,9 +129,12 @@ namespace Baobab {
             treemap_chart = builder.get_object ("treemap-chart") as Chart;
             spinner = builder.get_object ("spinner") as Gtk.Spinner;
             location_view = builder.get_object ("location-view") as Gtk.Grid;
+            horizontal_paned = builder.get_object ("hpaned") as Gtk.Paned;
 
             setup_home_page ();
             setup_treeview (builder);
+
+            setup_paned_autoresize ();
 
             var infobar_close_button = builder.get_object ("infobar-close-button") as Gtk.Button;
             infobar_close_button.clicked.connect (() => { clear_message (); });
@@ -435,6 +439,28 @@ namespace Baobab {
                     rings_chart.set_root (path);
                     treemap_chart.set_root (path);
                 }
+            });
+        }
+
+        void setup_paned_autoresize () {
+            double fraction = 0.5;
+            bool manual_resize = true;
+
+            configure_event.connect ((event) => {
+                horizontal_paned.position = (int) ( ((Gdk.EventConfigure) event).width * fraction);
+                manual_resize = false;
+
+                return false;
+            });
+
+            horizontal_paned.notify["position"].connect ((sender, property) => {
+                if (!manual_resize) {
+                    manual_resize = true;
+                    return;
+                }
+
+                var width = get_allocated_width ();
+                fraction = (double) horizontal_paned.position / width;
             });
         }
 

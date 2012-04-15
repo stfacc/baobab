@@ -1,0 +1,9 @@
+BaobabBaseLocationWidget {
+    padding: 6px;
+
+    border-radius : 6px;
+    border-width: 1px;
+    border-color: @borders;
+    border-style: solid;
+    background-color: @theme_base_color;
+}

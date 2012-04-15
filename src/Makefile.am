@@ -77,6 +77,7 @@ EXTRA_DIST = \
 	baobab.gresource.xml \
 	baobab-main-window.ui \
 	baobab-menu.ui	\
+	baobab.css \
 	$(baobab_c_headers)
 
 -include $(top_srcdir)/git.mk

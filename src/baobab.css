@@ -1,3 +1,11 @@
+#baobab-location-scrolled-window {
+    border-width: 1px 0 0 0;
+}
+
+#baobab-location-viewport {
+    background-color: #f1f2f1;
+}
+
 BaobabBaseLocationWidget {
     padding: 6px;
 

@@ -33,6 +33,7 @@ baobab_SOURCES = \
 	baobab-location-monitor.vala	\
 	baobab-location.vala		\
 	baobab-location-widget.vala	\
+	baobab-location-view.vala	\
 	baobab-scanner.vala		\
 	baobab-window.vala		\
 	main.vala			\
